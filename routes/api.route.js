@@ -11,5 +11,11 @@ router.get('/', async (req, res, next) => {
 router.post('/signup', authController.Register);
 router.post('/login', authController.Login);
 
+//Route for the Learning Platform
+router.post('/course', authMiddleware.authenticateToken, lmsController.Course)
+router.post('/enrollment', authMiddleware.authenticateToken, lmsController.Enrollment)
+
+
+
 
 module.exports = router;
