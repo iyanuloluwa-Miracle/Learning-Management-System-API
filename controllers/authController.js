@@ -5,21 +5,25 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
 
+exports.Register = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
 
-exports.Register = async(req,res)=>{
-    try {
-        const { username, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-    
-        const user = await User.create({ username, email, password: hashedPassword });
-    
-        res.status(201).json({ message: 'Registration successful' });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Registration failed' });
+    // Ensure all required fields are provided
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: 'Username, email, and password are required' });
     }
-   
-}
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({ username, email, password: hashedPassword });
+
+    res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Registration failed' });
+  }
+};
 
 exports.Login = async(req,res)=>{
     try {

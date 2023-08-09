@@ -12,8 +12,8 @@ router.post('/signup', authController.Register);
 router.post('/login', authController.Login);
 
 //Route for the Learning Platform
-router.post('/course', authMiddleware.authenticateToken, lmsController.Course)
-router.post('/enrollment', authMiddleware.authenticateToken, lmsController.Enrollment)
+router.post('/courses', authMiddleware.authenticateToken, lmsController.Course)
+router.post('/enroll', authMiddleware.authenticateToken, lmsController.Enrollment)
 
 
 
