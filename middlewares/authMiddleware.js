@@ -1,19 +1,27 @@
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
-module.exports = {
-  authenticateToken: function(req, res, next) {
-    const token = req.header('Authorization');
-    if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+exports.generateToken = (payload) => {
+  return jwt.sign(payload, jwtSecret, {
+    expiresIn: '1h',
+  });
+};
+
+exports.authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  jwt.verify(token, jwtSecret, (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(403).json({ message: 'Forbidden' });
     }
 
-    jwt.verify(token, jwtSecret, (error, decodedToken) => {
-      if (error) {
-        return res.status(403).json({ message: 'Invalid token' });
-      }
-      req.userId = decodedToken.userId;
-      next();
-    });
-  }
+    req.user = user;
+    next();
+  });
 };
