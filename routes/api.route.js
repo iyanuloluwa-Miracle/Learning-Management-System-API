@@ -15,7 +15,7 @@ router.post('/login', authController.Login);
 //Route for the Learning Platform
 router.post('/courses',  authenticateToken, lmsController.Course)
 router.post('/enroll',  authenticateToken, lmsController.Enrollment)
-
+router.post('/register-student',authenticateToken, lmsController.RegisterStudent)
 
 
 module.exports = router;
