@@ -102,3 +102,40 @@ Enroll students in courses for a dynamic learning experience.
 Authorization: Bearer your-access-token
 ```
 
+* Request Body:
+
+```json
+{
+  "studentId": "student-id",
+  "courseId": "course-id"
+}
+
+```
+* Response Body:
+
+```json
+{
+  "_id": "enrollment-id",
+  "student": "student-id",
+  "course": "course-id",
+  "enrolledAt": "enrollment-date"
+}
+
+```
+
+## Error Responses
+
+In case of errors, the API will provide relevant error messages.
+
+Example:
+
+```json
+{
+  "message": "Invalid token"
+}
+
+```
+
+Replace placeholders like `your-access-token`, `course-id`, `student-id`, and `enrollment-id` with actual values for effective interaction with the API.
+
+This documentation offers a concise overview of how to utilize the LMS API endpoints, facilitating seamless integration and empowering you to create a seamless educational experience.
