@@ -67,7 +67,7 @@ Effortlessly manage courses within the LMS.
 * Method: `POST`
 * Headers:
 
-```json
+```
 Authorization: Bearer your-access-token
 ```
 
@@ -98,7 +98,7 @@ Enroll students in courses for a dynamic learning experience.
 * Method: `POST`
 * Headers:
 
-```json
+```
 Authorization: Bearer your-access-token
 ```
 
