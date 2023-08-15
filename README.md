@@ -21,7 +21,6 @@ To access protected endpoints, you must first obtain an access token by making a
  "email": "your.email@example.com",
   "password": "your-password"
 }
-
 ```
 
 * Response:
@@ -29,7 +28,6 @@ To access protected endpoints, you must first obtain an access token by making a
 {
   "token": "your-access-token"
 }
-
 ```
 Include the access token in the `Authorization` header for subsequent requests
 
@@ -50,8 +48,6 @@ Create a new user account.
   "email": "new.email@example.com",
   "password": "your-password"
 }
-
-
 ```
 
 * Response:
@@ -60,7 +56,49 @@ Create a new user account.
 {
   "message": "Registration successful"
 }
-
-
-
 ```
+## Course Management
+
+Effortlessly manage courses within the LMS.
+
+
+### Endpoint: `/courses`
+
+* Method: `POST`
+* Headers:
+
+```json
+Authorization: Bearer your-access-token
+```
+
+* Request Body:
+
+```json
+{
+  "title": "Introduction to Programming",
+  "description": "Learn the fundamentals of coding."
+}
+```
+* Response Body:
+
+```json
+{
+  "_id": "course-id",
+  "title": "Introduction to Programming",
+  "description": "Learn the fundamentals of coding."
+}
+```
+
+## Student Enrollment:
+
+Enroll students in courses for a dynamic learning experience.
+
+### Endpoint: `/enroll`
+
+* Method: `POST`
+* Headers:
+
+```json
+Authorization: Bearer your-access-token
+```
+
